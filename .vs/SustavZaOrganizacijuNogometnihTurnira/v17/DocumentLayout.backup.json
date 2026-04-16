@@ -1,0 +1,154 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Mateo\\source\\repos\\SustavZaOrganizacijuNogometnihTurnira\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{70C8E9C3-4A53-43F2-BB2C-653723EC98E2}|SustavZaOrganizacijuNogometnihTurnira\\SustavZaOrganizacijuNogometnihTurnira.csproj|c:\\users\\mateo\\source\\repos\\sustavzaorganizacijunogometnihturnira\\sustavzaorganizacijunogometnihturnira\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{70C8E9C3-4A53-43F2-BB2C-653723EC98E2}|SustavZaOrganizacijuNogometnihTurnira\\SustavZaOrganizacijuNogometnihTurnira.csproj|solutionrelative:sustavzaorganizacijunogometnihturnira\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAE4BDAB-3A02-46B5-ABA2-235B82966941}|SustavZaOrganizacijuNogometnihTurnira.Model\\SustavZaOrganizacijuNogometnihTurnira.Model.csproj|c:\\users\\mateo\\source\\repos\\sustavzaorganizacijunogometnihturnira\\sustavzaorganizacijunogometnihturnira.model\\turnir.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAE4BDAB-3A02-46B5-ABA2-235B82966941}|SustavZaOrganizacijuNogometnihTurnira.Model\\SustavZaOrganizacijuNogometnihTurnira.Model.csproj|solutionrelative:sustavzaorganizacijunogometnihturnira.model\\turnir.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAE4BDAB-3A02-46B5-ABA2-235B82966941}|SustavZaOrganizacijuNogometnihTurnira.Model\\SustavZaOrganizacijuNogometnihTurnira.Model.csproj|c:\\users\\mateo\\source\\repos\\sustavzaorganizacijunogometnihturnira\\sustavzaorganizacijunogometnihturnira.model\\utakmica.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAE4BDAB-3A02-46B5-ABA2-235B82966941}|SustavZaOrganizacijuNogometnihTurnira.Model\\SustavZaOrganizacijuNogometnihTurnira.Model.csproj|solutionrelative:sustavzaorganizacijunogometnihturnira.model\\utakmica.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAE4BDAB-3A02-46B5-ABA2-235B82966941}|SustavZaOrganizacijuNogometnihTurnira.Model\\SustavZaOrganizacijuNogometnihTurnira.Model.csproj|c:\\users\\mateo\\source\\repos\\sustavzaorganizacijunogometnihturnira\\sustavzaorganizacijunogometnihturnira.model\\igrac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAE4BDAB-3A02-46B5-ABA2-235B82966941}|SustavZaOrganizacijuNogometnihTurnira.Model\\SustavZaOrganizacijuNogometnihTurnira.Model.csproj|solutionrelative:sustavzaorganizacijunogometnihturnira.model\\igrac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAE4BDAB-3A02-46B5-ABA2-235B82966941}|SustavZaOrganizacijuNogometnihTurnira.Model\\SustavZaOrganizacijuNogometnihTurnira.Model.csproj|c:\\users\\mateo\\source\\repos\\sustavzaorganizacijunogometnihturnira\\sustavzaorganizacijunogometnihturnira.model\\prijavaekipe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAE4BDAB-3A02-46B5-ABA2-235B82966941}|SustavZaOrganizacijuNogometnihTurnira.Model\\SustavZaOrganizacijuNogometnihTurnira.Model.csproj|solutionrelative:sustavzaorganizacijunogometnihturnira.model\\prijavaekipe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAE4BDAB-3A02-46B5-ABA2-235B82966941}|SustavZaOrganizacijuNogometnihTurnira.Model\\SustavZaOrganizacijuNogometnihTurnira.Model.csproj|c:\\users\\mateo\\source\\repos\\sustavzaorganizacijunogometnihturnira\\sustavzaorganizacijunogometnihturnira.model\\stadion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAE4BDAB-3A02-46B5-ABA2-235B82966941}|SustavZaOrganizacijuNogometnihTurnira.Model\\SustavZaOrganizacijuNogometnihTurnira.Model.csproj|solutionrelative:sustavzaorganizacijunogometnihturnira.model\\stadion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAE4BDAB-3A02-46B5-ABA2-235B82966941}|SustavZaOrganizacijuNogometnihTurnira.Model\\SustavZaOrganizacijuNogometnihTurnira.Model.csproj|c:\\users\\mateo\\source\\repos\\sustavzaorganizacijunogometnihturnira\\sustavzaorganizacijunogometnihturnira.model\\sudac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAE4BDAB-3A02-46B5-ABA2-235B82966941}|SustavZaOrganizacijuNogometnihTurnira.Model\\SustavZaOrganizacijuNogometnihTurnira.Model.csproj|solutionrelative:sustavzaorganizacijunogometnihturnira.model\\sudac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAE4BDAB-3A02-46B5-ABA2-235B82966941}|SustavZaOrganizacijuNogometnihTurnira.Model\\SustavZaOrganizacijuNogometnihTurnira.Model.csproj|c:\\users\\mateo\\source\\repos\\sustavzaorganizacijunogometnihturnira\\sustavzaorganizacijunogometnihturnira.model\\ekipa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAE4BDAB-3A02-46B5-ABA2-235B82966941}|SustavZaOrganizacijuNogometnihTurnira.Model\\SustavZaOrganizacijuNogometnihTurnira.Model.csproj|solutionrelative:sustavzaorganizacijunogometnihturnira.model\\ekipa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Mateo\\source\\repos\\SustavZaOrganizacijuNogometnihTurnira\\SustavZaOrganizacijuNogometnihTurnira\\Program.cs",
+              "RelativeDocumentMoniker": "SustavZaOrganizacijuNogometnihTurnira\\Program.cs",
+              "ToolTip": "C:\\Users\\Mateo\\source\\repos\\SustavZaOrganizacijuNogometnihTurnira\\SustavZaOrganizacijuNogometnihTurnira\\Program.cs",
+              "RelativeToolTip": "SustavZaOrganizacijuNogometnihTurnira\\Program.cs",
+              "ViewState": "AgIAAC0CAAAAAAAAAAAgwEICAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-01T09:39:28.183Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Utakmica.cs",
+              "DocumentMoniker": "C:\\Users\\Mateo\\source\\repos\\SustavZaOrganizacijuNogometnihTurnira\\SustavZaOrganizacijuNogometnihTurnira.Model\\Utakmica.cs",
+              "RelativeDocumentMoniker": "SustavZaOrganizacijuNogometnihTurnira.Model\\Utakmica.cs",
+              "ToolTip": "C:\\Users\\Mateo\\source\\repos\\SustavZaOrganizacijuNogometnihTurnira\\SustavZaOrganizacijuNogometnihTurnira.Model\\Utakmica.cs",
+              "RelativeToolTip": "SustavZaOrganizacijuNogometnihTurnira.Model\\Utakmica.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAzwB0AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T14:16:48.582Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Turnir.cs",
+              "DocumentMoniker": "C:\\Users\\Mateo\\source\\repos\\SustavZaOrganizacijuNogometnihTurnira\\SustavZaOrganizacijuNogometnihTurnira.Model\\Turnir.cs",
+              "RelativeDocumentMoniker": "SustavZaOrganizacijuNogometnihTurnira.Model\\Turnir.cs",
+              "ToolTip": "C:\\Users\\Mateo\\source\\repos\\SustavZaOrganizacijuNogometnihTurnira\\SustavZaOrganizacijuNogometnihTurnira.Model\\Turnir.cs",
+              "RelativeToolTip": "SustavZaOrganizacijuNogometnihTurnira.Model\\Turnir.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T14:16:01.048Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Ekipa.cs",
+              "DocumentMoniker": "C:\\Users\\Mateo\\source\\repos\\SustavZaOrganizacijuNogometnihTurnira\\SustavZaOrganizacijuNogometnihTurnira.Model\\Ekipa.cs",
+              "RelativeDocumentMoniker": "SustavZaOrganizacijuNogometnihTurnira.Model\\Ekipa.cs",
+              "ToolTip": "C:\\Users\\Mateo\\source\\repos\\SustavZaOrganizacijuNogometnihTurnira\\SustavZaOrganizacijuNogometnihTurnira.Model\\Ekipa.cs",
+              "RelativeToolTip": "SustavZaOrganizacijuNogometnihTurnira.Model\\Ekipa.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwBYAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T14:09:58.644Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Sudac.cs",
+              "DocumentMoniker": "C:\\Users\\Mateo\\source\\repos\\SustavZaOrganizacijuNogometnihTurnira\\SustavZaOrganizacijuNogometnihTurnira.Model\\Sudac.cs",
+              "RelativeDocumentMoniker": "SustavZaOrganizacijuNogometnihTurnira.Model\\Sudac.cs",
+              "ToolTip": "C:\\Users\\Mateo\\source\\repos\\SustavZaOrganizacijuNogometnihTurnira\\SustavZaOrganizacijuNogometnihTurnira.Model\\Sudac.cs",
+              "RelativeToolTip": "SustavZaOrganizacijuNogometnihTurnira.Model\\Sudac.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T14:15:53.684Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Stadion.cs",
+              "DocumentMoniker": "C:\\Users\\Mateo\\source\\repos\\SustavZaOrganizacijuNogometnihTurnira\\SustavZaOrganizacijuNogometnihTurnira.Model\\Stadion.cs",
+              "RelativeDocumentMoniker": "SustavZaOrganizacijuNogometnihTurnira.Model\\Stadion.cs",
+              "ToolTip": "C:\\Users\\Mateo\\source\\repos\\SustavZaOrganizacijuNogometnihTurnira\\SustavZaOrganizacijuNogometnihTurnira.Model\\Stadion.cs",
+              "RelativeToolTip": "SustavZaOrganizacijuNogometnihTurnira.Model\\Stadion.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T14:14:09.474Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PrijavaEkipe.cs",
+              "DocumentMoniker": "C:\\Users\\Mateo\\source\\repos\\SustavZaOrganizacijuNogometnihTurnira\\SustavZaOrganizacijuNogometnihTurnira.Model\\PrijavaEkipe.cs",
+              "RelativeDocumentMoniker": "SustavZaOrganizacijuNogometnihTurnira.Model\\PrijavaEkipe.cs",
+              "ToolTip": "C:\\Users\\Mateo\\source\\repos\\SustavZaOrganizacijuNogometnihTurnira\\SustavZaOrganizacijuNogometnihTurnira.Model\\PrijavaEkipe.cs",
+              "RelativeToolTip": "SustavZaOrganizacijuNogometnihTurnira.Model\\PrijavaEkipe.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T14:13:59.041Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Igrac.cs",
+              "DocumentMoniker": "C:\\Users\\Mateo\\source\\repos\\SustavZaOrganizacijuNogometnihTurnira\\SustavZaOrganizacijuNogometnihTurnira.Model\\Igrac.cs",
+              "RelativeDocumentMoniker": "SustavZaOrganizacijuNogometnihTurnira.Model\\Igrac.cs",
+              "ToolTip": "C:\\Users\\Mateo\\source\\repos\\SustavZaOrganizacijuNogometnihTurnira\\SustavZaOrganizacijuNogometnihTurnira.Model\\Igrac.cs",
+              "RelativeToolTip": "SustavZaOrganizacijuNogometnihTurnira.Model\\Igrac.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAzwBMAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T14:13:25.407Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
