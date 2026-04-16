@@ -1,0 +1,222 @@
+@model SustavZaOrganizacijuNogometnihTurnira.Models.TurnirDetailsViewModel
+
+@{
+    ViewData["Title"] = "Detalji turnira";
+}
+
+@await Html.PartialAsync("_Breadcrumbs", new[]
+{
+    new BreadcrumbItem { Text = "Početna", Controller = "Home", Action = "Index" },
+    new BreadcrumbItem { Text = "Turniri", Controller = "Turnir", Action = "Index" },
+    new BreadcrumbItem { Text = Model.Turnir.Naziv, IsActive = true }
+})
+
+<header class="page-header">
+    <div>
+        <a class="secondary-action" asp-controller="Turnir" asp-action="Index">Nazad na turnire</a>
+        <p class="page-kicker">Turnir</p>
+        <h1>@Model.Turnir.Naziv</h1>
+        <p class="page-description">@Model.Turnir.Opis</p>
+    </div>
+</header>
+
+<section class="content-section" aria-labelledby="turnir-summary-title">
+    <div class="section-heading">
+        <h2 id="turnir-summary-title">Sažetak turnira</h2>
+        <p>Najvažnije informacije za organizaciju turnira.</p>
+    </div>
+
+    <div class="summary-grid">
+        <div class="summary-card">
+            <span class="summary-label">Tip</span>
+            <strong>@Model.Turnir.Tip</strong>
+        </div>
+        <div class="summary-card">
+            <span class="summary-label">Trajanje</span>
+            <strong>@Model.Turnir.DatumPocetka.ToString("dd.MM.") - @Model.Turnir.DatumZavrsetka.ToString("dd.MM.yyyy.")</strong>
+        </div>
+        <div class="summary-card">
+            <span class="summary-label">Prijavljene ekipe</span>
+            <strong>@Model.PrijaveEkipe.Count() / @Model.Turnir.MaximalanBrojEkipa</strong>
+        </div>
+        <div class="summary-card">
+            <span class="summary-label">Igrači</span>
+            <strong>@Model.UkupnoIgraca</strong>
+        </div>
+    </div>
+</section>
+
+<section class="content-section" aria-labelledby="prijavljene-ekipe-title">
+    <div class="section-heading">
+        <h2 id="prijavljene-ekipe-title">Prijavljene ekipe i igrači</h2>
+        <p>Pregled prijava s povezanim ekipama i rosterima.</p>
+    </div>
+
+    @if (!Model.PrijaveEkipe.Any())
+    {
+        <p class="empty-state">Na ovom turniru trenutno nema prijavljenih ekipa.</p>
+    }
+    else
+    {
+        @foreach (var prijava in Model.PrijaveEkipe)
+        {
+            <details class="record-card">
+                <summary>
+                    @(prijava.Ekipa?.Naziv ?? "Nepoznata ekipa") - @prijava.Prijava.DatumPrijave.ToString("dd.MM.yyyy.")
+                </summary>
+                <div class="record-card-body">
+                    <dl class="detail-list">
+                        <dt>Ekipa</dt>
+                        <dd>
+                            @if (prijava.Ekipa != null)
+                            {
+                                <a asp-controller="Ekipa" asp-action="Details" asp-route-id="@prijava.Ekipa.EkipaId">@prijava.Ekipa.Naziv</a>
+                            }
+                            else
+                            {
+                                <span>-</span>
+                            }
+                        </dd>
+
+                        <dt>Grad</dt>
+                        <dd>@(prijava.Ekipa?.Grad ?? "-")</dd>
+
+                        <dt>Trener</dt>
+                        <dd>@(prijava.Ekipa?.TrenerIme ?? "-")</dd>
+
+                        <dt>Prijava</dt>
+                        <dd>
+                            <a asp-controller="PrijavaEkipe" asp-action="Details" asp-route-id="@prijava.Prijava.PrijavaEkipeId">
+                                Prijava #@prijava.Prijava.PrijavaEkipeId
+                            </a>
+                        </dd>
+
+                        <dt>Status prijave</dt>
+                        <dd>
+                            <span class="badge @(prijava.Prijava.Potvrdjeno ? "badge-success" : "badge-muted")">
+                                @(prijava.Prijava.Potvrdjeno ? "Potvrđena" : "Nije potvrđena")
+                            </span>
+                        </dd>
+                    </dl>
+
+                    @if (!prijava.Igraci.Any())
+                    {
+                        <p class="empty-state">Za ovu prijavu nema evidentiranih igrača.</p>
+                    }
+                    else
+                    {
+                        <div class="table-shell">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Broj</th>
+                                        <th>Igrač</th>
+                                        <th>Pozicija</th>
+                                        <th>Država</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var igrac in prijava.Igraci)
+                                    {
+                                        <tr>
+                                            <td>@igrac.BrojDresa</td>
+                                            <td>
+                                                <a asp-controller="Igrac" asp-action="Details" asp-route-id="@igrac.IgracId">
+                                                    @igrac.Ime @igrac.Prezime
+                                                </a>
+                                            </td>
+                                            <td>@igrac.Pozicija</td>
+                                            <td>@igrac.Drzava</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                </div>
+            </details>
+        }
+    }
+</section>
+
+<section class="content-section" aria-labelledby="utakmice-title">
+    <div class="section-heading">
+        <h2 id="utakmice-title">Utakmice</h2>
+        <p>Raspored susreta povezanih s turnirom.</p>
+    </div>
+
+    @if (!Model.Utakmice.Any())
+    {
+        <p class="empty-state">Za ovaj turnir trenutno nema evidentiranih utakmica.</p>
+    }
+    else
+    {
+        <div class="table-shell">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Datum</th>
+                        <th>Utakmica</th>
+                        <th>Rezultat</th>
+                        <th>Stadion</th>
+                        <th>Sudac</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var utakmica in Model.Utakmice)
+                    {
+                        <tr>
+                            <td>
+                                <a asp-controller="Utakmica" asp-action="Details" asp-route-id="@utakmica.Utakmica.UtakmicaId">
+                                    @utakmica.Utakmica.DatumVrijeme.ToString("dd.MM.yyyy. HH:mm")
+                                </a>
+                            </td>
+                            <td>
+                                @if (utakmica.DomacaEkipa != null)
+                                {
+                                    <a asp-controller="Ekipa" asp-action="Details" asp-route-id="@utakmica.DomacaEkipa.EkipaId">@utakmica.DomacaEkipa.Naziv</a>
+                                }
+                                else
+                                {
+                                    <span>-</span>
+                                }
+                                vs
+                                @if (utakmica.GostujucaEkipa != null)
+                                {
+                                    <a asp-controller="Ekipa" asp-action="Details" asp-route-id="@utakmica.GostujucaEkipa.EkipaId">@utakmica.GostujucaEkipa.Naziv</a>
+                                }
+                                else
+                                {
+                                    <span>-</span>
+                                }
+                            </td>
+                            <td>@utakmica.Utakmica.GoloviDomace : @utakmica.Utakmica.GoloviGosta</td>
+                            <td>
+                                @if (utakmica.Stadion != null)
+                                {
+                                    <a asp-controller="Stadion" asp-action="Details" asp-route-id="@utakmica.Stadion.StadionId">@utakmica.Stadion.Naziv</a>
+                                }
+                                else
+                                {
+                                    <span>-</span>
+                                }
+                            </td>
+                            <td>
+                                @if (utakmica.Sudac != null)
+                                {
+                                    <a asp-controller="Sudac" asp-action="Details" asp-route-id="@utakmica.Sudac.SudacId">@utakmica.Sudac.Ime @utakmica.Sudac.Prezime</a>
+                                }
+                                else
+                                {
+                                    <span>-</span>
+                                }
+                            </td>
+                            <td><span class="badge badge-muted">@utakmica.Utakmica.Status</span></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</section>

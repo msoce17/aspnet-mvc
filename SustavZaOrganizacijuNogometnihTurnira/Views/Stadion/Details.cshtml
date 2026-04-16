@@ -1,0 +1,35 @@
+@model SustavZaOrganizacijuNogometnihTurnira.Model.Stadion
+
+@{
+    ViewData["Title"] = "Detalji stadiona";
+}
+
+@await Html.PartialAsync("_Breadcrumbs", new[]
+{
+    new BreadcrumbItem { Text = "Početna", Controller = "Home", Action = "Index" },
+    new BreadcrumbItem { Text = "Stadioni", Controller = "Stadion", Action = "Index" },
+    new BreadcrumbItem { Text = Model.Naziv, IsActive = true }
+})
+
+<header class="page-header">
+    <div>
+        <a class="secondary-action" asp-controller="Stadion" asp-action="Index">Nazad na stadione</a>
+        <p class="page-kicker">Stadion</p>
+        <h1>@Model.Naziv</h1>
+        <p class="page-description">Osnovni detalji odabranog stadiona.</p>
+    </div>
+</header>
+
+<dl class="detail-list">
+    <dt>ID</dt>
+    <dd>@Model.StadionId</dd>
+
+    <dt>Naziv</dt>
+    <dd>@Model.Naziv</dd>
+
+    <dt>Grad</dt>
+    <dd>@Model.Grad</dd>
+
+    <dt>Kapacitet</dt>
+    <dd>@Model.Kapacitet</dd>
+</dl>

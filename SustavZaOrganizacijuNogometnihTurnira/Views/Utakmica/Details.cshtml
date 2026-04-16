@@ -1,0 +1,95 @@
+@model SustavZaOrganizacijuNogometnihTurnira.Models.UtakmicaViewModel
+
+@{
+    ViewData["Title"] = "Detalji utakmice";
+}
+
+@await Html.PartialAsync("_Breadcrumbs", new[]
+{
+    new BreadcrumbItem { Text = "Početna", Controller = "Home", Action = "Index" },
+    new BreadcrumbItem { Text = "Utakmice", Controller = "Utakmica", Action = "Index" },
+    new BreadcrumbItem { Text = $"{Model.DomacaEkipa?.Naziv ?? "-"} vs {Model.GostujucaEkipa?.Naziv ?? "-"}", IsActive = true }
+})
+
+<header class="page-header">
+    <div>
+        <a class="secondary-action" asp-controller="Utakmica" asp-action="Index">Nazad na utakmice</a>
+        <p class="page-kicker">Utakmica</p>
+        <h1>@(Model.DomacaEkipa?.Naziv ?? "-") vs @(Model.GostujucaEkipa?.Naziv ?? "-")</h1>
+        <p class="page-description">Detalji odabrane utakmice.</p>
+    </div>
+</header>
+
+<dl class="detail-list">
+    <dt>Turnir</dt>
+    <dd>
+        @if (Model.Turnir != null)
+        {
+            <a asp-controller="Turnir" asp-action="Details" asp-route-id="@Model.Turnir.TurnirId">@Model.Turnir.Naziv</a>
+        }
+        else
+        {
+            <span>-</span>
+        }
+    </dd>
+
+    <dt>Datum i vrijeme</dt>
+    <dd>@Model.Utakmica.DatumVrijeme.ToString("dd.MM.yyyy. HH:mm")</dd>
+
+    <dt>Domaća ekipa</dt>
+    <dd>
+        @if (Model.DomacaEkipa != null)
+        {
+            <a asp-controller="Ekipa" asp-action="Details" asp-route-id="@Model.DomacaEkipa.EkipaId">@Model.DomacaEkipa.Naziv</a>
+        }
+        else
+        {
+            <span>-</span>
+        }
+    </dd>
+
+    <dt>Gostujuća ekipa</dt>
+    <dd>
+        @if (Model.GostujucaEkipa != null)
+        {
+            <a asp-controller="Ekipa" asp-action="Details" asp-route-id="@Model.GostujucaEkipa.EkipaId">@Model.GostujucaEkipa.Naziv</a>
+        }
+        else
+        {
+            <span>-</span>
+        }
+    </dd>
+
+    <dt>Rezultat</dt>
+    <dd>@Model.Utakmica.GoloviDomace : @Model.Utakmica.GoloviGosta</dd>
+
+    <dt>Stadion</dt>
+    <dd>
+        @if (Model.Stadion != null)
+        {
+            <a asp-controller="Stadion" asp-action="Details" asp-route-id="@Model.Stadion.StadionId">@Model.Stadion.Naziv</a>
+        }
+        else
+        {
+            <span>-</span>
+        }
+    </dd>
+
+    <dt>Sudac</dt>
+    <dd>
+        @if (Model.Sudac != null)
+        {
+            <a asp-controller="Sudac" asp-action="Details" asp-route-id="@Model.Sudac.SudacId">@Model.Sudac.Ime @Model.Sudac.Prezime</a>
+        }
+        else
+        {
+            <span>-</span>
+        }
+    </dd>
+
+    <dt>Status</dt>
+    <dd><span class="badge badge-muted">@Model.Utakmica.Status</span></dd>
+
+    <dt>Napomena</dt>
+    <dd>@Model.Utakmica.Napomena</dd>
+</dl>

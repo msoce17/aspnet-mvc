@@ -1,0 +1,87 @@
+@model SustavZaOrganizacijuNogometnihTurnira.Models.EkipaDetailsViewModel
+
+@{
+    ViewData["Title"] = "Detalji ekipe";
+}
+
+@await Html.PartialAsync("_Breadcrumbs", new[]
+{
+    new BreadcrumbItem { Text = "Početna", Controller = "Home", Action = "Index" },
+    new BreadcrumbItem { Text = "Ekipe", Controller = "Ekipa", Action = "Index" },
+    new BreadcrumbItem { Text = Model.Ekipa.Naziv, IsActive = true }
+})
+
+<header class="page-header">
+    <div>
+        <a class="secondary-action" asp-controller="Ekipa" asp-action="Index">Nazad na ekipe</a>
+        <p class="page-kicker">Ekipa</p>
+        <h1>@Model.Ekipa.Naziv</h1>
+        <p class="page-description">Osnovni detalji ekipe i popis igrača.</p>
+    </div>
+</header>
+
+<dl class="detail-list">
+    <dt>ID</dt>
+    <dd>@Model.Ekipa.EkipaId</dd>
+
+    <dt>Naziv</dt>
+    <dd>@Model.Ekipa.Naziv</dd>
+
+    <dt>Grad</dt>
+    <dd>@Model.Ekipa.Grad</dd>
+
+    <dt>Datum osnutka</dt>
+    <dd>@Model.Ekipa.DatumOsnutka.ToString("dd.MM.yyyy.")</dd>
+
+    <dt>Trener</dt>
+    <dd>@Model.Ekipa.TrenerIme</dd>
+
+    <dt>Kontakt</dt>
+    <dd>@Model.Ekipa.Kontakt</dd>
+</dl>
+
+<section class="content-section" aria-labelledby="igraci-title">
+    <div class="section-heading">
+        <h2 id="igraci-title">Igrači</h2>
+        <p>Roster ekipe s osnovnim podacima.</p>
+    </div>
+
+@if (!Model.Igraci.Any())
+{
+    <p class="empty-state">Ova ekipa trenutno nema evidentiranih igrača.</p>
+}
+else
+{
+<div class="table-shell">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Broj</th>
+                <th>Ime i prezime</th>
+                <th>Pozicija</th>
+                <th>Datum rođenja</th>
+                <th>Država</th>
+                <th>Visina</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var igrac in Model.Igraci)
+            {
+                <tr>
+                    <td>@igrac.BrojDresa</td>
+                    <td>
+                        <a asp-controller="Igrac" asp-action="Details" asp-route-id="@igrac.IgracId">
+                            @igrac.Ime @igrac.Prezime
+                        </a>
+                    </td>
+                    <td>@igrac.Pozicija</td>
+                    <td>@igrac.DatumRodjenja.ToString("dd.MM.yyyy.")</td>
+                    <td>@igrac.Drzava</td>
+                    <td>@igrac.Visina m</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}
+</section>

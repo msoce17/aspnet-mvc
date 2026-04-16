@@ -1,0 +1,57 @@
+@model SustavZaOrganizacijuNogometnihTurnira.Models.PrijavaEkipeViewModel
+
+@{
+    ViewData["Title"] = "Detalji prijave";
+}
+
+@await Html.PartialAsync("_Breadcrumbs", new[]
+{
+    new BreadcrumbItem { Text = "Početna", Controller = "Home", Action = "Index" },
+    new BreadcrumbItem { Text = "Prijave ekipa", Controller = "PrijavaEkipe", Action = "Index" },
+    new BreadcrumbItem { Text = $"Prijava #{Model.Prijava.PrijavaEkipeId}", IsActive = true }
+})
+
+<header class="page-header">
+    <div>
+        <a class="secondary-action" asp-controller="PrijavaEkipe" asp-action="Index">Nazad na prijave</a>
+        <p class="page-kicker">Prijava ekipe</p>
+        <h1>Prijava #@Model.Prijava.PrijavaEkipeId</h1>
+        <p class="page-description">Detalji prijave ekipe na turnir.</p>
+    </div>
+</header>
+
+<dl class="detail-list">
+    <dt>Turnir</dt>
+    <dd>
+        @if (Model.Turnir != null)
+        {
+            <a asp-controller="Turnir" asp-action="Details" asp-route-id="@Model.Turnir.TurnirId">@Model.Turnir.Naziv</a>
+        }
+        else
+        {
+            <span>-</span>
+        }
+    </dd>
+
+    <dt>Ekipa</dt>
+    <dd>
+        @if (Model.Ekipa != null)
+        {
+            <a asp-controller="Ekipa" asp-action="Details" asp-route-id="@Model.Ekipa.EkipaId">@Model.Ekipa.Naziv</a>
+        }
+        else
+        {
+            <span>-</span>
+        }
+    </dd>
+
+    <dt>Datum prijave</dt>
+    <dd>@Model.Prijava.DatumPrijave.ToString("dd.MM.yyyy.")</dd>
+
+    <dt>Status</dt>
+    <dd>
+        <span class="badge @(Model.Prijava.Potvrdjeno ? "badge-success" : "badge-muted")">
+            @(Model.Prijava.Potvrdjeno ? "Potvrđena" : "Nije potvrđena")
+        </span>
+    </dd>
+</dl>

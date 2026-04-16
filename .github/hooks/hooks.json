@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "type": "command",
+        "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File 'C:\\Users\\Mateo\\source\\repos\\SustavZaOrganizacijuNogometnihTurnira\\.github\\hooks\\hook-log.ps1'"
+      }
+    ],
+    "preToolUse": [
+      {
+        "type": "command",
+        "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File 'C:\\Users\\Mateo\\source\\repos\\SustavZaOrganizacijuNogometnihTurnira\\.github\\hooks\\hook-log.ps1'"
+      }
+    ]
+  }
+}

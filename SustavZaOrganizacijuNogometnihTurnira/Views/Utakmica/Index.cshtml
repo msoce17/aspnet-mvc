@@ -1,0 +1,73 @@
+@model IEnumerable<SustavZaOrganizacijuNogometnihTurnira.Models.UtakmicaViewModel>
+
+@{
+    ViewData["Title"] = "Utakmice";
+}
+
+@await Html.PartialAsync("_Breadcrumbs", new[]
+{
+    new BreadcrumbItem { Text = "Početna", Controller = "Home", Action = "Index" },
+    new BreadcrumbItem { Text = "Utakmice", IsActive = true }
+})
+
+<header class="page-header">
+    <div>
+        <p class="page-kicker">Raspored</p>
+        <h1>Utakmice</h1>
+        <p class="page-description">Popis svih utakmica u sustavu.</p>
+    </div>
+</header>
+
+@if (!Model.Any())
+{
+    <p class="empty-state">Trenutno nema evidentiranih utakmica.</p>
+}
+else
+{
+<div class="table-shell">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Datum</th>
+                <th>Turnir</th>
+                <th>Utakmica</th>
+                <th>Rezultat</th>
+                <th>Stadion</th>
+                <th>Sudac</th>
+                <th class="table-actions">Akcije</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Utakmica.DatumVrijeme.ToString("dd.MM.yyyy. HH:mm")</td>
+                    <td>
+                        @if (item.Turnir != null)
+                        {
+                            <a asp-controller="Turnir" asp-action="Details" asp-route-id="@item.Turnir.TurnirId">@item.Turnir.Naziv</a>
+                        }
+                        else
+                        {
+                            <span>-</span>
+                        }
+                    </td>
+                    <td>
+                        <a asp-controller="Utakmica" asp-action="Details" asp-route-id="@item.Utakmica.UtakmicaId">
+                            @(item.DomacaEkipa?.Naziv ?? "-") vs @(item.GostujucaEkipa?.Naziv ?? "-")
+                        </a>
+                    </td>
+                    <td>@item.Utakmica.GoloviDomace : @item.Utakmica.GoloviGosta</td>
+                    <td>@(item.Stadion?.Naziv ?? "-")</td>
+                    <td>@(item.Sudac == null ? "-" : $"{item.Sudac.Ime} {item.Sudac.Prezime}")</td>
+                    <td class="table-actions">
+                        <a class="action-link" asp-controller="Utakmica" asp-action="Details" asp-route-id="@item.Utakmica.UtakmicaId">
+                            Detalji
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}

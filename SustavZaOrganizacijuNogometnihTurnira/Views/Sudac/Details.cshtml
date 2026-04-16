@@ -1,0 +1,35 @@
+@model SustavZaOrganizacijuNogometnihTurnira.Model.Sudac
+
+@{
+    ViewData["Title"] = "Detalji suca";
+}
+
+@await Html.PartialAsync("_Breadcrumbs", new[]
+{
+    new BreadcrumbItem { Text = "Početna", Controller = "Home", Action = "Index" },
+    new BreadcrumbItem { Text = "Sudci", Controller = "Sudac", Action = "Index" },
+    new BreadcrumbItem { Text = $"{Model.Ime} {Model.Prezime}", IsActive = true }
+})
+
+<header class="page-header">
+    <div>
+        <a class="secondary-action" asp-controller="Sudac" asp-action="Index">Nazad na sudce</a>
+        <p class="page-kicker">Sudac</p>
+        <h1>@Model.Ime @Model.Prezime</h1>
+        <p class="page-description">Osnovni detalji odabranog suca.</p>
+    </div>
+</header>
+
+<dl class="detail-list">
+    <dt>ID</dt>
+    <dd>@Model.SudacId</dd>
+
+    <dt>Ime</dt>
+    <dd>@Model.Ime</dd>
+
+    <dt>Prezime</dt>
+    <dd>@Model.Prezime</dd>
+
+    <dt>Licenca</dt>
+    <dd>@Model.Licenca</dd>
+</dl>

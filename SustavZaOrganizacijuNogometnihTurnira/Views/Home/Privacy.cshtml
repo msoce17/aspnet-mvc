@@ -1,6 +1,24 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
+@{
+    ViewData["Title"] = "Privatnost";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+@await Html.PartialAsync("_Breadcrumbs", new[]
+{
+    new BreadcrumbItem { Text = "Početna", Controller = "Home", Action = "Index" },
+    new BreadcrumbItem { Text = "Privatnost", IsActive = true }
+})
+
+<header class="page-header">
+    <div>
+        <p class="page-kicker">Informacije</p>
+        <h1>Privatnost</h1>
+        <p class="page-description">Osnovna informativna stranica za studentski MVC projekt.</p>
+    </div>
+</header>
+
+<section class="panel">
+    <p>
+        Aplikacija koristi mock podatke za prikaz rada sustava za organizaciju nogometnih turnira.
+        Na ovoj stranici možete dodati stvarna pravila privatnosti ako projekt kasnije bude koristio korisničke račune ili stvarne osobne podatke.
+    </p>
+</section>

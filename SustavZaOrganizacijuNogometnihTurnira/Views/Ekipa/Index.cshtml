@@ -1,0 +1,60 @@
+@model IEnumerable<SustavZaOrganizacijuNogometnihTurnira.Model.Ekipa>
+
+@{
+    ViewData["Title"] = "Ekipe";
+}
+
+@await Html.PartialAsync("_Breadcrumbs", new[]
+{
+    new BreadcrumbItem { Text = "Početna", Controller = "Home", Action = "Index" },
+    new BreadcrumbItem { Text = "Ekipe", IsActive = true }
+})
+
+<header class="page-header">
+    <div>
+        <p class="page-kicker">Klubovi i timovi</p>
+        <h1>Ekipe</h1>
+        <p class="page-description">Popis svih ekipa u sustavu.</p>
+    </div>
+</header>
+
+@if (!Model.Any())
+{
+    <p class="empty-state">Trenutno nema evidentiranih ekipa.</p>
+}
+else
+{
+<div class="table-shell">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Naziv</th>
+                <th>Grad</th>
+                <th>Trener</th>
+                <th>Broj igrača</th>
+                <th class="table-actions">Akcije</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ekipa in Model)
+            {
+                <tr>
+                    <td>
+                        <a asp-controller="Ekipa" asp-action="Details" asp-route-id="@ekipa.EkipaId">
+                            @ekipa.Naziv
+                        </a>
+                    </td>
+                    <td>@ekipa.Grad</td>
+                    <td>@ekipa.TrenerIme</td>
+                    <td>@ekipa.BrojIgraca</td>
+                    <td class="table-actions">
+                        <a class="action-link" asp-controller="Ekipa" asp-action="Details" asp-route-id="@ekipa.EkipaId">
+                            Detalji
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}

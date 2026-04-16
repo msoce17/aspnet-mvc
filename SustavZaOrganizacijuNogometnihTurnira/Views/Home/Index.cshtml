@@ -1,8 +1,83 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@model SustavZaOrganizacijuNogometnihTurnira.Models.HomeDashboardViewModel
+
+@{
+    ViewData["Title"] = "Početna";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@await Html.PartialAsync("_Breadcrumbs", new[]
+{
+    new BreadcrumbItem { Text = "Početna", IsActive = true }
+})
+
+<header class="page-header home-hero">
+    <div>
+        <p class="page-kicker">Nogometni turniri</p>
+        <h1>Sustav za organizaciju nogometnih turnira</h1>
+        <p class="page-description">
+            Pregled ključnih podataka i brz pristup turnirima, ekipama, utakmicama, stadionima, sudcima i prijavama.
+        </p>
+    </div>
+    <a class="primary-action" asp-controller="Turnir" asp-action="Index">Pregled turnira</a>
+</header>
+
+<section class="dashboard-section" aria-labelledby="dashboard-stats-title">
+    <div class="section-heading">
+        <h2 id="dashboard-stats-title">Pregled sustava</h2>
+        <p>Mock podaci organizirani su po glavnim područjima aplikacije.</p>
+    </div>
+
+    <div class="stat-grid">
+        <a class="stat-card" asp-controller="Turnir" asp-action="Index" aria-label="Pregled turnira">
+            <span class="stat-label">Turniri</span>
+            <strong>@Model.BrojTurnira</strong>
+            <span class="stat-hint">Aktivni i pripremljeni turniri</span>
+        </a>
+        <a class="stat-card" asp-controller="Ekipa" asp-action="Index" aria-label="Pregled ekipa">
+            <span class="stat-label">Ekipe</span>
+            <strong>@Model.BrojEkipa</strong>
+            <span class="stat-hint">Prijavljeni klubovi i timovi</span>
+        </a>
+        <a class="stat-card" asp-controller="Igrac" asp-action="Index" aria-label="Pregled igrača">
+            <span class="stat-label">Igrači</span>
+            <strong>@Model.BrojIgraca</strong>
+            <span class="stat-hint">Registrirani igrači u ekipama</span>
+        </a>
+        <a class="stat-card" asp-controller="Utakmica" asp-action="Index" aria-label="Pregled utakmica">
+            <span class="stat-label">Utakmice</span>
+            <strong>@Model.BrojUtakmica</strong>
+            <span class="stat-hint">Raspored i odigrani susreti</span>
+        </a>
+        <a class="stat-card" asp-controller="Stadion" asp-action="Index" aria-label="Pregled stadiona">
+            <span class="stat-label">Stadioni</span>
+            <strong>@Model.BrojStadiona</strong>
+            <span class="stat-hint">Lokacije za održavanje utakmica</span>
+        </a>
+        <a class="stat-card" asp-controller="Sudac" asp-action="Index" aria-label="Pregled sudaca">
+            <span class="stat-label">Sudci</span>
+            <strong>@Model.BrojSudaca</strong>
+            <span class="stat-hint">Službene osobe za utakmice</span>
+        </a>
+        <a class="stat-card" asp-controller="PrijavaEkipe" asp-action="Index" aria-label="Pregled prijava ekipa">
+            <span class="stat-label">Prijave</span>
+            <strong>@Model.BrojPrijava</strong>
+            <span class="stat-hint">Statusi prijava ekipa</span>
+        </a>
+    </div>
+</section>
+
+<section class="dashboard-section quick-links" aria-labelledby="quick-links-title">
+    <div class="section-heading">
+        <h2 id="quick-links-title">Brza navigacija</h2>
+        <p>Odaberite područje sustava i otvorite listu zapisa.</p>
+    </div>
+
+    <nav class="action-list" aria-label="Brza navigacija">
+        <a class="action-link" asp-controller="Turnir" asp-action="Index">Turniri</a>
+        <a class="action-link" asp-controller="Ekipa" asp-action="Index">Ekipe</a>
+        <a class="action-link" asp-controller="Igrac" asp-action="Index">Igrači</a>
+        <a class="action-link" asp-controller="Utakmica" asp-action="Index">Utakmice</a>
+        <a class="action-link" asp-controller="PrijavaEkipe" asp-action="Index">Prijave</a>
+        <a class="action-link" asp-controller="Stadion" asp-action="Index">Stadioni</a>
+        <a class="action-link" asp-controller="Sudac" asp-action="Index">Sudci</a>
+    </nav>
+</section>

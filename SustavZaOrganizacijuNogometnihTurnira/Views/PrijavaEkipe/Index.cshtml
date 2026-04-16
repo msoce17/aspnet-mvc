@@ -1,0 +1,78 @@
+@model IEnumerable<SustavZaOrganizacijuNogometnihTurnira.Models.PrijavaEkipeViewModel>
+
+@{
+    ViewData["Title"] = "Prijave ekipa";
+}
+
+@await Html.PartialAsync("_Breadcrumbs", new[]
+{
+    new BreadcrumbItem { Text = "Početna", Controller = "Home", Action = "Index" },
+    new BreadcrumbItem { Text = "Prijave ekipa", IsActive = true }
+})
+
+<header class="page-header">
+    <div>
+        <p class="page-kicker">Administracija prijava</p>
+        <h1>Prijave ekipa</h1>
+        <p class="page-description">Popis svih prijava ekipa na turnire.</p>
+    </div>
+</header>
+
+@if (!Model.Any())
+{
+    <p class="empty-state">Trenutno nema evidentiranih prijava ekipa.</p>
+}
+else
+{
+<div class="table-shell">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Turnir</th>
+                <th>Ekipa</th>
+                <th>Datum prijave</th>
+                <th>Status</th>
+                <th class="table-actions">Akcije</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @if (item.Turnir != null)
+                        {
+                            <a asp-controller="Turnir" asp-action="Details" asp-route-id="@item.Turnir.TurnirId">@item.Turnir.Naziv</a>
+                        }
+                        else
+                        {
+                            <span>-</span>
+                        }
+                    </td>
+                    <td>
+                        @if (item.Ekipa != null)
+                        {
+                            <a asp-controller="Ekipa" asp-action="Details" asp-route-id="@item.Ekipa.EkipaId">@item.Ekipa.Naziv</a>
+                        }
+                        else
+                        {
+                            <span>-</span>
+                        }
+                    </td>
+                    <td>@item.Prijava.DatumPrijave.ToString("dd.MM.yyyy.")</td>
+                    <td>
+                        <span class="badge @(item.Prijava.Potvrdjeno ? "badge-success" : "badge-muted")">
+                            @(item.Prijava.Potvrdjeno ? "Potvrđena" : "Nije potvrđena")
+                        </span>
+                    </td>
+                    <td class="table-actions">
+                        <a class="action-link" asp-controller="PrijavaEkipe" asp-action="Details" asp-route-id="@item.Prijava.PrijavaEkipeId">
+                            Detalji
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}

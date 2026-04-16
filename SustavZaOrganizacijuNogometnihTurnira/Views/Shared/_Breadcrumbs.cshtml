@@ -1,0 +1,19 @@
+@model IEnumerable<SustavZaOrganizacijuNogometnihTurnira.Models.BreadcrumbItem>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        @foreach (var item in Model)
+        {
+            if (item.IsActive)
+            {
+                <li class="breadcrumb-item active" aria-current="page">@item.Text</li>
+            }
+            else
+            {
+                <li class="breadcrumb-item">
+                    <a asp-controller="@item.Controller" asp-action="@item.Action" asp-all-route-data="@item.RouteValues">@item.Text</a>
+                </li>
+            }
+        }
+    </ol>
+</nav>

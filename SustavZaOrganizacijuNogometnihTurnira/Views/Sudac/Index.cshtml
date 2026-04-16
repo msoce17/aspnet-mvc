@@ -1,0 +1,56 @@
+@model IEnumerable<SustavZaOrganizacijuNogometnihTurnira.Model.Sudac>
+
+@{
+    ViewData["Title"] = "Sudci";
+}
+
+@await Html.PartialAsync("_Breadcrumbs", new[]
+{
+    new BreadcrumbItem { Text = "Početna", Controller = "Home", Action = "Index" },
+    new BreadcrumbItem { Text = "Sudci", IsActive = true }
+})
+
+<header class="page-header">
+    <div>
+        <p class="page-kicker">Službene osobe</p>
+        <h1>Sudci</h1>
+        <p class="page-description">Popis svih sudaca u sustavu.</p>
+    </div>
+</header>
+
+@if (!Model.Any())
+{
+    <p class="empty-state">Trenutno nema evidentiranih sudaca.</p>
+}
+else
+{
+<div class="table-shell">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Ime i prezime</th>
+                <th>Licenca</th>
+                <th class="table-actions">Akcije</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var sudac in Model)
+            {
+                <tr>
+                    <td>
+                        <a asp-controller="Sudac" asp-action="Details" asp-route-id="@sudac.SudacId">
+                            @sudac.Ime @sudac.Prezime
+                        </a>
+                    </td>
+                    <td>@sudac.Licenca</td>
+                    <td class="table-actions">
+                        <a class="action-link" asp-controller="Sudac" asp-action="Details" asp-route-id="@sudac.SudacId">
+                            Detalji
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}

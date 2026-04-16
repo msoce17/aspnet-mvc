@@ -1,0 +1,71 @@
+@model IEnumerable<SustavZaOrganizacijuNogometnihTurnira.Models.IgracDetailsViewModel>
+
+@{
+    ViewData["Title"] = "Igrači";
+}
+
+@await Html.PartialAsync("_Breadcrumbs", new[]
+{
+    new BreadcrumbItem { Text = "Početna", Controller = "Home", Action = "Index" },
+    new BreadcrumbItem { Text = "Igrači", IsActive = true }
+})
+
+<header class="page-header">
+    <div>
+        <p class="page-kicker">Roster</p>
+        <h1>Igrači</h1>
+        <p class="page-description">Popis svih igrača u sustavu.</p>
+    </div>
+</header>
+
+@if (!Model.Any())
+{
+    <p class="empty-state">Trenutno nema evidentiranih igrača.</p>
+}
+else
+{
+<div class="table-shell">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Broj</th>
+                <th>Ime i prezime</th>
+                <th>Ekipa</th>
+                <th>Pozicija</th>
+                <th>Država</th>
+                <th class="table-actions">Akcije</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Igrac.BrojDresa</td>
+                    <td>
+                        <a asp-controller="Igrac" asp-action="Details" asp-route-id="@item.Igrac.IgracId">
+                            @item.Igrac.Ime @item.Igrac.Prezime
+                        </a>
+                    </td>
+                    <td>
+                        @if (item.Ekipa != null)
+                        {
+                            <a asp-controller="Ekipa" asp-action="Details" asp-route-id="@item.Ekipa.EkipaId">@item.Ekipa.Naziv</a>
+                        }
+                        else
+                        {
+                            <span>-</span>
+                        }
+                    </td>
+                    <td>@item.Igrac.Pozicija</td>
+                    <td>@item.Igrac.Drzava</td>
+                    <td class="table-actions">
+                        <a class="action-link" asp-controller="Igrac" asp-action="Details" asp-route-id="@item.Igrac.IgracId">
+                            Detalji
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}

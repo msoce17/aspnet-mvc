@@ -1,0 +1,53 @@
+@model SustavZaOrganizacijuNogometnihTurnira.Models.IgracDetailsViewModel
+
+@{
+    ViewData["Title"] = "Detalji igrača";
+}
+
+@await Html.PartialAsync("_Breadcrumbs", new[]
+{
+    new BreadcrumbItem { Text = "Početna", Controller = "Home", Action = "Index" },
+    new BreadcrumbItem { Text = "Igrači", Controller = "Igrac", Action = "Index" },
+    new BreadcrumbItem { Text = $"{Model.Igrac.Ime} {Model.Igrac.Prezime}", IsActive = true }
+})
+
+<header class="page-header">
+    <div>
+        <a class="secondary-action" asp-controller="Igrac" asp-action="Index">Nazad na igrače</a>
+        <p class="page-kicker">Igrač</p>
+        <h1>@Model.Igrac.Ime @Model.Igrac.Prezime</h1>
+        <p class="page-description">Osnovni detalji odabranog igrača.</p>
+    </div>
+</header>
+
+<dl class="detail-list">
+    <dt>ID</dt>
+    <dd>@Model.Igrac.IgracId</dd>
+
+    <dt>Broj dresa</dt>
+    <dd>@Model.Igrac.BrojDresa</dd>
+
+    <dt>Pozicija</dt>
+    <dd>@Model.Igrac.Pozicija</dd>
+
+    <dt>Ekipa</dt>
+    <dd>
+        @if (Model.Ekipa != null)
+        {
+            <a asp-controller="Ekipa" asp-action="Details" asp-route-id="@Model.Ekipa.EkipaId">@Model.Ekipa.Naziv</a>
+        }
+        else
+        {
+            <span>-</span>
+        }
+    </dd>
+
+    <dt>Datum rođenja</dt>
+    <dd>@Model.Igrac.DatumRodjenja.ToString("dd.MM.yyyy.")</dd>
+
+    <dt>Država</dt>
+    <dd>@Model.Igrac.Drzava</dd>
+
+    <dt>Visina</dt>
+    <dd>@Model.Igrac.Visina m</dd>
+</dl>

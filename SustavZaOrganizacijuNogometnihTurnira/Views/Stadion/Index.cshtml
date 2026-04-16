@@ -1,0 +1,58 @@
+@model IEnumerable<SustavZaOrganizacijuNogometnihTurnira.Model.Stadion>
+
+@{
+    ViewData["Title"] = "Stadioni";
+}
+
+@await Html.PartialAsync("_Breadcrumbs", new[]
+{
+    new BreadcrumbItem { Text = "Početna", Controller = "Home", Action = "Index" },
+    new BreadcrumbItem { Text = "Stadioni", IsActive = true }
+})
+
+<header class="page-header">
+    <div>
+        <p class="page-kicker">Lokacije</p>
+        <h1>Stadioni</h1>
+        <p class="page-description">Popis svih stadiona u sustavu.</p>
+    </div>
+</header>
+
+@if (!Model.Any())
+{
+    <p class="empty-state">Trenutno nema evidentiranih stadiona.</p>
+}
+else
+{
+<div class="table-shell">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Naziv</th>
+                <th>Grad</th>
+                <th>Kapacitet</th>
+                <th class="table-actions">Akcije</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var stadion in Model)
+            {
+                <tr>
+                    <td>
+                        <a asp-controller="Stadion" asp-action="Details" asp-route-id="@stadion.StadionId">
+                            @stadion.Naziv
+                        </a>
+                    </td>
+                    <td>@stadion.Grad</td>
+                    <td>@stadion.Kapacitet</td>
+                    <td class="table-actions">
+                        <a class="action-link" asp-controller="Stadion" asp-action="Details" asp-route-id="@stadion.StadionId">
+                            Detalji
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}
