@@ -1,1 +1,1 @@
-ZIP FOLDER aspnet-mvc-master.zip je projektni zadatak
+PROJEKT SE NALAZI NA MASTER BRANCHU
