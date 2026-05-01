@@ -29,5 +29,22 @@ namespace SustavZaOrganizacijuNogometnihTurnira.Model.Repositories
                 .Include(igrac => igrac.Ekipa)
                 .FirstOrDefault(igrac => igrac.IgracId == id);
         }
+
+        public void Add(Igrac igrac)
+        {
+            _dbContext.Igraci.Add(igrac);
+            _dbContext.SaveChanges();
+        }
+
+        public void Update(Igrac igrac)
+        {
+            _dbContext.Igraci.Update(igrac);
+            _dbContext.SaveChanges();
+        }
+
+        public bool Exists(int id)
+        {
+            return _dbContext.Igraci.Any(igrac => igrac.IgracId == id);
+        }
     }
 }

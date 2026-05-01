@@ -18,6 +18,7 @@
         <h1>@Model.Igrac.Ime @Model.Igrac.Prezime</h1>
         <p class="page-description">Osnovni detalji odabranog igrača.</p>
     </div>
+    <a class="primary-action" asp-controller="Igrac" asp-action="Edit" asp-route-id="@Model.Igrac.IgracId">Uredi igrača</a>
 </header>
 
 <dl class="detail-list">

@@ -1,0 +1,89 @@
+@model SustavZaOrganizacijuNogometnihTurnira.Models.IgracFormViewModel
+
+@{
+    ViewData["Title"] = "Novi igrač";
+}
+
+@await Html.PartialAsync("_Breadcrumbs", new[]
+{
+    new BreadcrumbItem { Text = "Početna", Controller = "Home", Action = "Index" },
+    new BreadcrumbItem { Text = "Igrači", Controller = "Igrac", Action = "Index" },
+    new BreadcrumbItem { Text = "Novi igrač", IsActive = true }
+})
+
+<header class="page-header">
+    <div>
+        <a class="secondary-action" asp-controller="Igrac" asp-action="Index">Nazad na igrače</a>
+        <p class="page-kicker">Forma</p>
+        <h1>Dodaj novog igrača</h1>
+        <p class="page-description">Unesi osnovne podatke i odaberi ekipu kojoj igrač pripada.</p>
+    </div>
+</header>
+
+<section class="form-shell">
+    <form asp-action="Create" method="post" class="entity-form">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+        <div class="form-grid">
+            <div class="form-field">
+                <label asp-for="Ime"></label>
+                <input asp-for="Ime" class="form-input" />
+                <span asp-validation-for="Ime" class="field-validation"></span>
+            </div>
+
+            <div class="form-field">
+                <label asp-for="Prezime"></label>
+                <input asp-for="Prezime" class="form-input" />
+                <span asp-validation-for="Prezime" class="field-validation"></span>
+            </div>
+
+            <div class="form-field">
+                <label asp-for="BrojDresa"></label>
+                <input asp-for="BrojDresa" class="form-input" />
+                <span asp-validation-for="BrojDresa" class="field-validation"></span>
+            </div>
+
+            <div class="form-field">
+                <label asp-for="Pozicija"></label>
+                <input asp-for="Pozicija" class="form-input" />
+                <span asp-validation-for="Pozicija" class="field-validation"></span>
+            </div>
+
+            <div class="form-field">
+                <label asp-for="DatumRodjenja"></label>
+                <input asp-for="DatumRodjenja" class="form-input" />
+                <span asp-validation-for="DatumRodjenja" class="field-validation"></span>
+            </div>
+
+            <div class="form-field">
+                <label asp-for="Drzava"></label>
+                <input asp-for="Drzava" class="form-input" />
+                <span asp-validation-for="Drzava" class="field-validation"></span>
+            </div>
+
+            <div class="form-field">
+                <label asp-for="Visina"></label>
+                <input asp-for="Visina" class="form-input" step="0.01" />
+                <span asp-validation-for="Visina" class="field-validation"></span>
+            </div>
+
+            <div class="form-field">
+                <label asp-for="EkipaId"></label>
+                <select asp-for="EkipaId" class="form-input" asp-items="@(new SelectList(Model.Ekipe, "EkipaId", "Naziv"))">
+                    <option value="">Odaberi ekipu</option>
+                </select>
+                <span asp-validation-for="EkipaId" class="field-validation"></span>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="primary-action">Spremi igrača</button>
+            <a asp-controller="Igrac" asp-action="Index" class="action-link">Odustani</a>
+        </div>
+    </form>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

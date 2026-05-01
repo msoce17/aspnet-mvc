@@ -80,6 +80,18 @@ Zbog toga neki dijelovi aplikacije imaju i prilagođeni URL i zadani URL koji vo
 - View: `Views/Igrac/Index.cshtml`
 - Opis: popis svih igrača
 
+### URL: `/igraci/novo`
+- Controller: `IgracController`
+- Akcija: `Create` (GET)
+- View: `Views/Igrac/Create.cshtml`
+- Opis: forma za dodavanje novog igrača i odabir ekipe iz padajućeg izbornika
+
+### URL: `/igraci/novo`
+- Controller: `IgracController`
+- Akcija: `Create` (POST)
+- View: `Views/Igrac/Create.cshtml` kod neispravnog unosa
+- Opis: sprema novog igrača u bazu podataka
+
 ### URL: `/Igrac/Index`
 - Controller: `IgracController`
 - Akcija: `Index`
@@ -91,6 +103,18 @@ Zbog toga neki dijelovi aplikacije imaju i prilagođeni URL i zadani URL koji vo
 - Akcija: `Details`
 - View: `Views/Igrac/Details.cshtml`
 - Opis: detalji pojedinog igrača
+
+### URL: `/igraci/{id}/uredi`
+- Controller: `IgracController`
+- Akcija: `Edit` (GET)
+- View: `Views/Igrac/Edit.cshtml`
+- Opis: forma za uređivanje postojećeg igrača i promjenu ekipe
+
+### URL: `/igraci/{id}/uredi`
+- Controller: `IgracController`
+- Akcija: `Edit` (POST)
+- View: `Views/Igrac/Edit.cshtml` kod neispravnog unosa
+- Opis: sprema izmjene igrača u bazu podataka
 
 ### URL: `/Igrac/Details/{id}`
 - Controller: `IgracController`
