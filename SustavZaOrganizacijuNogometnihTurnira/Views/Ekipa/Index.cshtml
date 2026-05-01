@@ -16,6 +16,7 @@
         <h1>Ekipe</h1>
         <p class="page-description">Popis svih ekipa u sustavu.</p>
     </div>
+    <a class="primary-action" asp-controller="Ekipa" asp-action="Create">Dodaj ekipu</a>
 </header>
 
 @if (!Model.Any())
@@ -48,6 +49,9 @@ else
                     <td>@ekipa.TrenerIme</td>
                     <td>@ekipa.BrojIgraca</td>
                     <td class="table-actions">
+                        <a class="action-link" asp-controller="Ekipa" asp-action="Edit" asp-route-id="@ekipa.EkipaId">
+                            Uredi
+                        </a>
                         <a class="action-link" asp-controller="Ekipa" asp-action="Details" asp-route-id="@ekipa.EkipaId">
                             Detalji
                         </a>

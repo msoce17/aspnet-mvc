@@ -8,23 +8,23 @@ namespace SustavZaOrganizacijuNogometnihTurnira.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly TurnirMockRepository _turnirRepository;
-        private readonly EkipaMockRepository _ekipaRepository;
-        private readonly IgracMockRepository _igracRepository;
-        private readonly StadionMockRepository _stadionRepository;
-        private readonly SudacMockRepository _sudacRepository;
-        private readonly UtakmicaMockRepository _utakmicaRepository;
-        private readonly PrijavaEkipeMockRepository _prijavaEkipeRepository;
+        private readonly TurnirRepository _turnirRepository;
+        private readonly EkipaRepository _ekipaRepository;
+        private readonly IgracRepository _igracRepository;
+        private readonly StadionRepository _stadionRepository;
+        private readonly SudacRepository _sudacRepository;
+        private readonly UtakmicaRepository _utakmicaRepository;
+        private readonly PrijavaEkipeRepository _prijavaEkipeRepository;
 
         public HomeController(
             ILogger<HomeController> logger,
-            TurnirMockRepository turnirRepository,
-            EkipaMockRepository ekipaRepository,
-            IgracMockRepository igracRepository,
-            StadionMockRepository stadionRepository,
-            SudacMockRepository sudacRepository,
-            UtakmicaMockRepository utakmicaRepository,
-            PrijavaEkipeMockRepository prijavaEkipeRepository)
+            TurnirRepository turnirRepository,
+            EkipaRepository ekipaRepository,
+            IgracRepository igracRepository,
+            StadionRepository stadionRepository,
+            SudacRepository sudacRepository,
+            UtakmicaRepository utakmicaRepository,
+            PrijavaEkipeRepository prijavaEkipeRepository)
         {
             _logger = logger;
             _turnirRepository = turnirRepository;

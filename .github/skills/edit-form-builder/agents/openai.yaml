@@ -1,0 +1,4 @@
+interface:
+  display_name: "Edit Form Builder"
+  short_description: "Create Razor create/edit forms with validation"
+  default_prompt: "Use $edit-form-builder to add a create or edit Razor form with validation and repository save logic."

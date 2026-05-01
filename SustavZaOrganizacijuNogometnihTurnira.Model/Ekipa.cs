@@ -1,31 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SustavZaOrganizacijuNogometnihTurnira.Model
 {
+    [Table("Ekipe")]
     public class Ekipa
     {
+        [Key]
         public int EkipaId { get; set; }
-        public string Naziv { get; set; }
-        public string Grad { get; set; }
-        public DateTime DatumOsnutka { get; set; }
-        public string TrenerIme { get; set; }
-        public int BrojIgraca { get; set; }
-        public string Kontakt { get; set; }
 
-        // Relacije N-N sa Turnirima (preko PrijaveEkipe)
+        [Required]
+        [StringLength(100)]
+        public string Naziv { get; set; } = string.Empty;
+
+        [Required]
+        [StringLength(100)]
+        public string Grad { get; set; } = string.Empty;
+
+        [DataType(DataType.Date)]
+        public DateTime DatumOsnutka { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string TrenerIme { get; set; } = string.Empty;
+
+        [Range(0, 99)]
+        public int BrojIgraca { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Kontakt { get; set; } = string.Empty;
+
+        [InverseProperty(nameof(PrijavaEkipe.Ekipa))]
         public virtual ICollection<PrijavaEkipe> PrijaveEkipe { get; set; } = new List<PrijavaEkipe>();
 
-        // Relacija 1-N sa Igracima
+        [InverseProperty(nameof(Igrac.Ekipa))]
         public virtual ICollection<Igrac> Igraci { get; set; } = new List<Igrac>();
 
-        // Relacija 1-N sa Utakmicama (kao domaca ekipa)
+        [InverseProperty(nameof(Utakmica.DomacaEkipa))]
         public virtual ICollection<Utakmica> DomaceUtakmice { get; set; } = new List<Utakmica>();
 
-        // Relacija 1-N sa Utakmicama (kao gostujuca ekipa)
+        [InverseProperty(nameof(Utakmica.GostujucaEkipa))]
         public virtual ICollection<Utakmica> GostujuceUtakmice { get; set; } = new List<Utakmica>();
     }
 }

@@ -1,13 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using SustavZaOrganizacijuNogometnihTurnira.Model.Repositories;
+using SustavZaOrganizacijuNogometnihTurnira.Models;
 
 namespace SustavZaOrganizacijuNogometnihTurnira.Controllers
 {
     public class StadionController : Controller
     {
-        private readonly StadionMockRepository _stadionRepository;
+        private readonly StadionRepository _stadionRepository;
 
-        public StadionController(StadionMockRepository stadionRepository)
+        public StadionController(StadionRepository stadionRepository)
         {
             _stadionRepository = stadionRepository;
         }
@@ -25,7 +26,15 @@ namespace SustavZaOrganizacijuNogometnihTurnira.Controllers
 
             if (stadion == null)
             {
-                return NotFound();
+                Response.StatusCode = StatusCodes.Status404NotFound;
+                return View("~/Views/Shared/NotFound.cshtml", new NotFoundViewModel
+                {
+                    Title = "Stadion nije pronađen",
+                    Message = $"Stadion s ID-em {id} ne postoji.",
+                    BackLinkText = "Nazad na stadione",
+                    BackController = "Stadion",
+                    BackAction = "Index"
+                });
             }
 
             return View(stadion);

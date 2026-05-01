@@ -1,13 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using SustavZaOrganizacijuNogometnihTurnira.Model.Repositories;
+using SustavZaOrganizacijuNogometnihTurnira.Models;
 
 namespace SustavZaOrganizacijuNogometnihTurnira.Controllers
 {
     public class SudacController : Controller
     {
-        private readonly SudacMockRepository _sudacRepository;
+        private readonly SudacRepository _sudacRepository;
 
-        public SudacController(SudacMockRepository sudacRepository)
+        public SudacController(SudacRepository sudacRepository)
         {
             _sudacRepository = sudacRepository;
         }
@@ -25,7 +26,15 @@ namespace SustavZaOrganizacijuNogometnihTurnira.Controllers
 
             if (sudac == null)
             {
-                return NotFound();
+                Response.StatusCode = StatusCodes.Status404NotFound;
+                return View("~/Views/Shared/NotFound.cshtml", new NotFoundViewModel
+                {
+                    Title = "Sudac nije pronađen",
+                    Message = $"Sudac s ID-em {id} ne postoji.",
+                    BackLinkText = "Nazad na suce",
+                    BackController = "Sudac",
+                    BackAction = "Index"
+                });
             }
 
             return View(sudac);

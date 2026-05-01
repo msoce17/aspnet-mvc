@@ -1,0 +1,74 @@
+@model SustavZaOrganizacijuNogometnihTurnira.Models.TurnirTeamsListViewModel
+
+@{
+    ViewData["Title"] = "Prijavljene ekipe";
+}
+
+@await Html.PartialAsync("_Breadcrumbs", new[]
+{
+    new BreadcrumbItem { Text = "Početna", Controller = "Home", Action = "Index" },
+    new BreadcrumbItem { Text = "Turniri", Controller = "Turnir", Action = "Index" },
+    new BreadcrumbItem { Text = Model.Turnir.Naziv, Controller = "Turnir", Action = "Details", RouteValues = new Dictionary<string, string> { ["id"] = Model.Turnir.TurnirId.ToString() } },
+    new BreadcrumbItem { Text = "Prijavljene ekipe", IsActive = true }
+})
+
+<header class="page-header">
+    <div>
+        <a class="secondary-action" asp-controller="Turnir" asp-action="Details" asp-route-id="@Model.Turnir.TurnirId">Nazad na detalje turnira</a>
+        <p class="page-kicker">Lista</p>
+        <h1>Prijavljene ekipe za turnir @Model.Turnir.Naziv</h1>
+        <p class="page-description">Pregled svih prijava, statusa potvrde i broja igrača po ekipi.</p>
+    </div>
+</header>
+
+@if (!Model.Stavke.Any())
+{
+    <p class="empty-state">Na ovom turniru još nema prijavljenih ekipa.</p>
+}
+else
+{
+    <div class="table-shell">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Ekipa</th>
+                    <th>Grad</th>
+                    <th>Trener</th>
+                    <th>Broj igrača</th>
+                    <th>Datum prijave</th>
+                    <th>Status</th>
+                    <th class="table-actions">Akcije</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var stavka in Model.Stavke)
+                {
+                    <tr>
+                        <td>
+                            @if (stavka.Ekipa != null)
+                            {
+                                <a asp-controller="Ekipa" asp-action="Details" asp-route-id="@stavka.Ekipa.EkipaId">@stavka.Ekipa.Naziv</a>
+                            }
+                            else
+                            {
+                                <span>-</span>
+                            }
+                        </td>
+                        <td>@(stavka.Ekipa?.Grad ?? "-")</td>
+                        <td>@(stavka.Ekipa?.TrenerIme ?? "-")</td>
+                        <td>@stavka.BrojIgraca</td>
+                        <td>@stavka.Prijava.DatumPrijave.ToString("dd.MM.yyyy.")</td>
+                        <td>
+                            <span class="badge @(stavka.Prijava.Potvrdjeno ? "badge-success" : "badge-muted")">
+                                @(stavka.Prijava.Potvrdjeno ? "Potvrđena" : "Na čekanju")
+                            </span>
+                        </td>
+                        <td class="table-actions">
+                            <a class="action-link" asp-controller="PrijavaEkipe" asp-action="Details" asp-route-id="@stavka.Prijava.PrijavaEkipeId">Prijava</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

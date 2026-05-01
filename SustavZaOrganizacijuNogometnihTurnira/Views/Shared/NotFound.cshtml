@@ -1,0 +1,20 @@
+@model NotFoundViewModel
+
+@{
+    ViewData["Title"] = "Zapis nije pronađen";
+}
+
+<header class="page-header">
+    <div>
+        <a class="secondary-action" asp-controller="@Model.BackController" asp-action="@Model.BackAction">@Model.BackLinkText</a>
+        <p class="page-kicker">404</p>
+        <h1>@Model.Title</h1>
+        <p class="page-description">@Model.Message</p>
+    </div>
+</header>
+
+<section class="panel">
+    <p class="muted-text">
+        Provjeri adresu u pregledniku ili se vrati na prethodni popis i odaberi postojeći zapis.
+    </p>
+</section>

@@ -4,17 +4,19 @@ using SustavZaOrganizacijuNogometnihTurnira.Models;
 
 namespace SustavZaOrganizacijuNogometnihTurnira.Controllers
 {
+    [Route("igraci")]
     public class IgracController : Controller
     {
-        private readonly IgracMockRepository _igracRepository;
-        private readonly EkipaMockRepository _ekipaRepository;
+        private readonly IgracRepository _igracRepository;
+        private readonly EkipaRepository _ekipaRepository;
 
-        public IgracController(IgracMockRepository igracRepository, EkipaMockRepository ekipaRepository)
+        public IgracController(IgracRepository igracRepository, EkipaRepository ekipaRepository)
         {
             _igracRepository = igracRepository;
             _ekipaRepository = ekipaRepository;
         }
 
+        [HttpGet("")]
         public IActionResult Index()
         {
             var igraci = _igracRepository.GetAll()
@@ -27,13 +29,22 @@ namespace SustavZaOrganizacijuNogometnihTurnira.Controllers
             return View(igraci);
         }
 
+        [HttpGet("{id:int}")]
         public IActionResult Details(int id)
         {
             var igrac = _igracRepository.GetById(id);
 
             if (igrac == null)
             {
-                return NotFound();
+                Response.StatusCode = StatusCodes.Status404NotFound;
+                return View("~/Views/Shared/NotFound.cshtml", new NotFoundViewModel
+                {
+                    Title = "Igrač nije pronađen",
+                    Message = $"Igrač s ID-em {id} ne postoji.",
+                    BackLinkText = "Nazad na igrače",
+                    BackController = "Igrac",
+                    BackAction = "Index"
+                });
             }
 
             var viewModel = new IgracDetailsViewModel

@@ -4,20 +4,21 @@ using SustavZaOrganizacijuNogometnihTurnira.Models;
 
 namespace SustavZaOrganizacijuNogometnihTurnira.Controllers
 {
+    [Route("utakmice")]
     public class UtakmicaController : Controller
     {
-        private readonly UtakmicaMockRepository _utakmicaRepository;
-        private readonly TurnirMockRepository _turnirRepository;
-        private readonly EkipaMockRepository _ekipaRepository;
-        private readonly StadionMockRepository _stadionRepository;
-        private readonly SudacMockRepository _sudacRepository;
+        private readonly UtakmicaRepository _utakmicaRepository;
+        private readonly TurnirRepository _turnirRepository;
+        private readonly EkipaRepository _ekipaRepository;
+        private readonly StadionRepository _stadionRepository;
+        private readonly SudacRepository _sudacRepository;
 
         public UtakmicaController(
-            UtakmicaMockRepository utakmicaRepository,
-            TurnirMockRepository turnirRepository,
-            EkipaMockRepository ekipaRepository,
-            StadionMockRepository stadionRepository,
-            SudacMockRepository sudacRepository)
+            UtakmicaRepository utakmicaRepository,
+            TurnirRepository turnirRepository,
+            EkipaRepository ekipaRepository,
+            StadionRepository stadionRepository,
+            SudacRepository sudacRepository)
         {
             _utakmicaRepository = utakmicaRepository;
             _turnirRepository = turnirRepository;
@@ -26,6 +27,7 @@ namespace SustavZaOrganizacijuNogometnihTurnira.Controllers
             _sudacRepository = sudacRepository;
         }
 
+        [HttpGet("")]
         public IActionResult Index()
         {
             var utakmice = _utakmicaRepository.GetAll()
@@ -34,13 +36,22 @@ namespace SustavZaOrganizacijuNogometnihTurnira.Controllers
             return View(utakmice);
         }
 
+        [HttpGet("{id:int}")]
         public IActionResult Details(int id)
         {
             var utakmica = _utakmicaRepository.GetById(id);
 
             if (utakmica == null)
             {
-                return NotFound();
+                Response.StatusCode = StatusCodes.Status404NotFound;
+                return View("~/Views/Shared/NotFound.cshtml", new NotFoundViewModel
+                {
+                    Title = "Utakmica nije pronađena",
+                    Message = $"Utakmica s ID-em {id} ne postoji.",
+                    BackLinkText = "Nazad na utakmice",
+                    BackController = "Utakmica",
+                    BackAction = "Index"
+                });
             }
 
             return View(CreateViewModel(utakmica));

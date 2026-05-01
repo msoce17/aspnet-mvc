@@ -18,6 +18,7 @@
         <h1>@Model.Turnir.Naziv</h1>
         <p class="page-description">@Model.Turnir.Opis</p>
     </div>
+    <a class="primary-action" asp-controller="Turnir" asp-action="Teams" asp-route-id="@Model.Turnir.TurnirId">Pregled prijavljenih ekipa</a>
 </header>
 
 <section class="content-section" aria-labelledby="turnir-summary-title">

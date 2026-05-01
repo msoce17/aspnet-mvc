@@ -6,14 +6,14 @@ namespace SustavZaOrganizacijuNogometnihTurnira.Controllers
 {
     public class PrijavaEkipeController : Controller
     {
-        private readonly PrijavaEkipeMockRepository _prijavaEkipeRepository;
-        private readonly TurnirMockRepository _turnirRepository;
-        private readonly EkipaMockRepository _ekipaRepository;
+        private readonly PrijavaEkipeRepository _prijavaEkipeRepository;
+        private readonly TurnirRepository _turnirRepository;
+        private readonly EkipaRepository _ekipaRepository;
 
         public PrijavaEkipeController(
-            PrijavaEkipeMockRepository prijavaEkipeRepository,
-            TurnirMockRepository turnirRepository,
-            EkipaMockRepository ekipaRepository)
+            PrijavaEkipeRepository prijavaEkipeRepository,
+            TurnirRepository turnirRepository,
+            EkipaRepository ekipaRepository)
         {
             _prijavaEkipeRepository = prijavaEkipeRepository;
             _turnirRepository = turnirRepository;
@@ -34,7 +34,15 @@ namespace SustavZaOrganizacijuNogometnihTurnira.Controllers
 
             if (prijava == null)
             {
-                return NotFound();
+                Response.StatusCode = StatusCodes.Status404NotFound;
+                return View("~/Views/Shared/NotFound.cshtml", new NotFoundViewModel
+                {
+                    Title = "Prijava nije pronađena",
+                    Message = $"Prijava s ID-em {id} ne postoji.",
+                    BackLinkText = "Nazad na prijave",
+                    BackController = "PrijavaEkipe",
+                    BackAction = "Index"
+                });
             }
 
             return View(CreateViewModel(prijava));

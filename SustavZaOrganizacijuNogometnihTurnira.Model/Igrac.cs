@@ -1,24 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SustavZaOrganizacijuNogometnihTurnira.Model
 {
+    [Table("Igraci")]
     public class Igrac
     {
+        [Key]
         public int IgracId { get; set; }
-        public string Ime { get; set; }
-        public string Prezime { get; set; }
+
+        [Required]
+        [StringLength(60)]
+        public string Ime { get; set; } = string.Empty;
+
+        [Required]
+        [StringLength(60)]
+        public string Prezime { get; set; } = string.Empty;
+
+        [Range(1, 99)]
         public int BrojDresa { get; set; }
-        public string Pozicija { get; set; }
+
+        [Required]
+        [StringLength(40)]
+        public string Pozicija { get; set; } = string.Empty;
+
+        [DataType(DataType.Date)]
         public DateTime DatumRodjenja { get; set; }
-        public string Drzava { get; set; }
+
+        [Required]
+        [StringLength(60)]
+        public string Drzava { get; set; } = string.Empty;
+
+        [Column(TypeName = "decimal(4,2)")]
         public decimal Visina { get; set; }
 
-        // Foreign Key - Relacija N-1 sa Ekipom
+        [ForeignKey(nameof(Ekipa))]
         public int EkipaId { get; set; }
-        public virtual Ekipa Ekipa { get; set; }
+
+        public virtual Ekipa? Ekipa { get; set; }
     }
 }

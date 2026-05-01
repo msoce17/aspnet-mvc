@@ -1,0 +1,4 @@
+interface:
+  display_name: "List Page Builder"
+  short_description: "Create Razor list pages and linked overview tables"
+  default_prompt: "Use $list-page-builder to add a new list page that matches the existing MVC layout, breadcrumbs, and table design."

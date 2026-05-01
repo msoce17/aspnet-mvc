@@ -1,0 +1,75 @@
+@model SustavZaOrganizacijuNogometnihTurnira.Models.EkipaFormViewModel
+
+@{
+    ViewData["Title"] = "Nova ekipa";
+}
+
+@await Html.PartialAsync("_Breadcrumbs", new[]
+{
+    new BreadcrumbItem { Text = "Početna", Controller = "Home", Action = "Index" },
+    new BreadcrumbItem { Text = "Ekipe", Controller = "Ekipa", Action = "Index" },
+    new BreadcrumbItem { Text = "Nova ekipa", IsActive = true }
+})
+
+<header class="page-header">
+    <div>
+        <a class="secondary-action" asp-controller="Ekipa" asp-action="Index">Nazad na ekipe</a>
+        <p class="page-kicker">Forma</p>
+        <h1>Dodaj novu ekipu</h1>
+        <p class="page-description">Unesi osnovne podatke o novoj ekipi koja će sudjelovati u sustavu.</p>
+    </div>
+</header>
+
+<section class="form-shell">
+    <form asp-action="Create" method="post" class="entity-form">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+        <div class="form-grid">
+            <div class="form-field">
+                <label asp-for="Naziv"></label>
+                <input asp-for="Naziv" class="form-input" />
+                <span asp-validation-for="Naziv" class="field-validation"></span>
+            </div>
+
+            <div class="form-field">
+                <label asp-for="Grad"></label>
+                <input asp-for="Grad" class="form-input" />
+                <span asp-validation-for="Grad" class="field-validation"></span>
+            </div>
+
+            <div class="form-field">
+                <label asp-for="DatumOsnutka"></label>
+                <input asp-for="DatumOsnutka" class="form-input" />
+                <span asp-validation-for="DatumOsnutka" class="field-validation"></span>
+            </div>
+
+            <div class="form-field">
+                <label asp-for="TrenerIme"></label>
+                <input asp-for="TrenerIme" class="form-input" />
+                <span asp-validation-for="TrenerIme" class="field-validation"></span>
+            </div>
+
+            <div class="form-field">
+                <label asp-for="BrojIgraca"></label>
+                <input asp-for="BrojIgraca" class="form-input" />
+                <span asp-validation-for="BrojIgraca" class="field-validation"></span>
+            </div>
+
+            <div class="form-field">
+                <label asp-for="Kontakt"></label>
+                <input asp-for="Kontakt" class="form-input" />
+                <span asp-validation-for="Kontakt" class="field-validation"></span>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="primary-action">Spremi ekipu</button>
+            <a asp-controller="Ekipa" asp-action="Index" class="action-link">Odustani</a>
+        </div>
+    </form>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

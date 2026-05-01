@@ -1,0 +1,4 @@
+interface:
+  display_name: "Entity Framework Helper"
+  short_description: "Update EF entities, DbContext, repositories, and migrations"
+  default_prompt: "Use $entity-framework-helper to update EF Core entities, repositories, and migrations in this football tournament MVC project."

@@ -4,24 +4,25 @@ using SustavZaOrganizacijuNogometnihTurnira.Models;
 
 namespace SustavZaOrganizacijuNogometnihTurnira.Controllers
 {
+    [Route("turniri")]
     public class TurnirController : Controller
     {
-        private readonly TurnirMockRepository _turnirRepository;
-        private readonly PrijavaEkipeMockRepository _prijavaEkipeRepository;
-        private readonly UtakmicaMockRepository _utakmicaRepository;
-        private readonly EkipaMockRepository _ekipaRepository;
-        private readonly IgracMockRepository _igracRepository;
-        private readonly StadionMockRepository _stadionRepository;
-        private readonly SudacMockRepository _sudacRepository;
+        private readonly TurnirRepository _turnirRepository;
+        private readonly PrijavaEkipeRepository _prijavaEkipeRepository;
+        private readonly UtakmicaRepository _utakmicaRepository;
+        private readonly EkipaRepository _ekipaRepository;
+        private readonly IgracRepository _igracRepository;
+        private readonly StadionRepository _stadionRepository;
+        private readonly SudacRepository _sudacRepository;
 
         public TurnirController(
-            TurnirMockRepository turnirRepository,
-            PrijavaEkipeMockRepository prijavaEkipeRepository,
-            UtakmicaMockRepository utakmicaRepository,
-            EkipaMockRepository ekipaRepository,
-            IgracMockRepository igracRepository,
-            StadionMockRepository stadionRepository,
-            SudacMockRepository sudacRepository)
+            TurnirRepository turnirRepository,
+            PrijavaEkipeRepository prijavaEkipeRepository,
+            UtakmicaRepository utakmicaRepository,
+            EkipaRepository ekipaRepository,
+            IgracRepository igracRepository,
+            StadionRepository stadionRepository,
+            SudacRepository sudacRepository)
         {
             _turnirRepository = turnirRepository;
             _prijavaEkipeRepository = prijavaEkipeRepository;
@@ -32,6 +33,7 @@ namespace SustavZaOrganizacijuNogometnihTurnira.Controllers
             _sudacRepository = sudacRepository;
         }
 
+        [HttpGet("")]
         public IActionResult Index()
         {
             var turniri = _turnirRepository.GetAll();
@@ -39,13 +41,63 @@ namespace SustavZaOrganizacijuNogometnihTurnira.Controllers
             return View(turniri);
         }
 
+        [HttpGet("{id:int}/ekipe")]
+        public IActionResult Teams(int id)
+        {
+            var turnir = _turnirRepository.GetById(id);
+
+            if (turnir == null)
+            {
+                Response.StatusCode = StatusCodes.Status404NotFound;
+                return View("~/Views/Shared/NotFound.cshtml", new NotFoundViewModel
+                {
+                    Title = "Turnir nije pronađen",
+                    Message = $"Turnir s ID-em {id} ne postoji.",
+                    BackLinkText = "Nazad na turnire",
+                    BackController = "Turnir",
+                    BackAction = "Index"
+                });
+            }
+
+            var prijave = _prijavaEkipeRepository.GetAll()
+                .Where(prijava => prijava.TurnirId == id)
+                .Select(prijava =>
+                {
+                    var ekipa = _ekipaRepository.GetById(prijava.EkipaId);
+
+                    return new TurnirTeamsListItemViewModel
+                    {
+                        Prijava = prijava,
+                        Ekipa = ekipa,
+                        BrojIgraca = _igracRepository.GetAll().Count(igrac => igrac.EkipaId == prijava.EkipaId)
+                    };
+                })
+                .OrderBy(stavka => stavka.Ekipa?.Naziv)
+                .ToList();
+
+            return View(new TurnirTeamsListViewModel
+            {
+                Turnir = turnir,
+                Stavke = prijave
+            });
+        }
+
+        [HttpGet("{id:int}")]
         public IActionResult Details(int id)
         {
             var turnir = _turnirRepository.GetById(id);
 
             if (turnir == null)
             {
-                return NotFound();
+                Response.StatusCode = StatusCodes.Status404NotFound;
+                return View("~/Views/Shared/NotFound.cshtml", new NotFoundViewModel
+                {
+                    Title = "Turnir nije pronađen",
+                    Message = $"Turnir s ID-em {id} ne postoji.",
+                    BackLinkText = "Nazad na turnire",
+                    BackController = "Turnir",
+                    BackAction = "Index"
+                });
             }
 
             var prijaveEkipe = _prijavaEkipeRepository.GetAll()
